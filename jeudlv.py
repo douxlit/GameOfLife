@@ -1,5 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from time import time
+
+init_time = 1595867650 #temps auquel on veut que le jeu commence (en utilisant time) -> int
+
 ##Modification git
 
 #modif test
@@ -16,13 +20,13 @@ import numpy as np
 essaie = np.ones((5,5))
 e = np.array([[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  1.,  1.,  1.,  1.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  1.,  1.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  1.,  0.,  1.,  0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.]])
 
 def countones(tab,l,c) :
@@ -61,7 +65,7 @@ def jdlv_time(tab,temps):
     if temps == 0 :
         return tab
     else :
-        return jdlv(tab2jdlv(tab), temps-1)
+        return jdlv(tab2jdlv(tab), temps-1) #vive la recursivité
         
 ##agrandissement du tableau 
 
@@ -79,15 +83,13 @@ def jdlv_tex(tab,temps,extension) :
     if temps == 0 :
         return tab
     else :
-        return jdlv_tex(  tab2jdlv(  extend(tab,extension,extension)  ), temps-1, extension )
+        return jdlv_tex(  tab2jdlv(  extend(tab,extension,extension)  ), temps-1, extension ) #vive la recursivité
+        
+##test1
 
-
-
-
-
-
-
-
+t = time()
+T = int(t) - init_time
+print(jdlv_tex(e,T,1)) #permet d'avoir un jdlv qui evolue toutes les secondes et qui grandit toutes les secondes
 
 
 
