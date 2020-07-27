@@ -3,6 +3,7 @@ import numpy as np
 ##Modification git
 
 #modif test
+#modif test 2 from GitHub
 
 ##regle jeu de la vie
 
