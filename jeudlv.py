@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from time import time
 
-init_time = 1595867650 #temps auquel on veut que le jeu commence (en utilisant time) -> int
+init_time = 1595946640 #temps auquel on veut que le jeu commence (en utilisant time) -> int
 
 ##Modification git
 
@@ -59,13 +59,13 @@ def tab2jdlv(tab) :
     
     end
 
-##fonction du 'temps'
+##fonction du 'temps'1595867650
 
 def jdlv_time(tab,temps):
     if temps == 0 :
         return tab
     else :
-        return jdlv(tab2jdlv(tab), temps-1) #vive la recursivité
+        return jdlv_time(tab2jdlv(tab), temps-1) #vive la recursivité
         
 ##agrandissement du tableau 
 
@@ -89,7 +89,7 @@ def jdlv_tex(tab,temps,extension) :
 
 t = time()
 T = int(t) - init_time
-print(jdlv_tex(e,T,1)) #permet d'avoir un jdlv qui evolue toutes les secondes et qui grandit toutes les secondes
+print(jdlv_tex(e,T,0)) #permet d'avoir un jdlv qui evolue toutes les secondes et qui grandit toutes les secondes
 
 
 
