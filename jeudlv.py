@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from time import time
+from random import random
 
 init_time = 1595946640 #temps auquel on veut que le jeu commence (en utilisant time) -> int
 
@@ -58,7 +59,7 @@ def tab2jdlv(tab) :
     return np.array(intermediaire)
     
     end
-
+random
 ##fonction du 'temps'1595867650
 
 def jdlv_time(tab,temps):
@@ -77,7 +78,7 @@ def extend(tab,more_l,more_c) :
             E[i+more_l,j+more_c] = tab[i,j]
     return E
 
-##agrandissement + fonction du temps
+##agrandissement + fonction du temps (bof pas la meilleure solution)
 
 def jdlv_tex(tab,temps,extension) :
     if temps == 0 :
@@ -87,13 +88,22 @@ def jdlv_tex(tab,temps,extension) :
         
 ##test1
 
-t = time()
-T = int(t) - init_time
-print(jdlv_tex(e,T,0)) #permet d'avoir un jdlv qui evolue toutes les secondes et qui grandit toutes les secondes
+# t = time()
+# T = int(t) - init_time
+# print(jdlv_tex(e,T,0)) #permet d'avoir un jdlv qui evolue toutes les secondes et qui grandit toutes les secondes
 
+##definition "nature" 
 
+def prob(k,p) :
+    """proba p qu'une cellule k change d'état"""
+    assert (k==0 or k==1) and 0<=p<=1
+    x = random()
+    if x > p :
+        return k
+    else :
+        return abs(k-1)
 
-
+#cond de cht d'etat d'une cellule ?
 
 
 
