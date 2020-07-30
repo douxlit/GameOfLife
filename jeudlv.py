@@ -3,7 +3,7 @@ import numpy as np
 from time import time
 from random import random
 
-init_time = 1595946640 #temps auquel on veut que le jeu commence (en utilisant time) -> int
+init_time = time() #temps auquel on veut que le jeu commence (en utilisant time) -> int
 
 ##Modification git
 
@@ -19,7 +19,7 @@ init_time = 1595946640 #temps auquel on veut que le jeu commence (en utilisant t
 ##fonction sur tableau numpy
 
 essaie = np.ones((5,5))
-e = np.array([[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+e1 = np.array([[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
@@ -28,6 +28,17 @@ e = np.array([[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  1.,  1.,  0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  1.,  0.,  1.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.]])
+       
+e2 = np.array([[ 1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.]])
 
 def countones(tab,l,c) :
@@ -105,6 +116,83 @@ def prob(k,p) :
 
 #cond de cht d'etat d'une cellule ?
 
+#si rien aux alentours d'une cellule vide (>=N) p = x
+#si cellule vivante aux alentours d'une cellule vide (<N) p = 10x 
+
+def cellule_autour(N,i,j,tab) :
+    
+    (n,p)=tab.shape
+    
+    if i-N < 0 :
+        for l in range (0,i+N+1) :
+            
+            if j-N < 0 :
+                for c in range (0,j+N+1) :
+                    if tab[l,c] == 1 :
+                        return True
+            elif j+N+1 > p :
+                for c in range (j-N,p) :
+                    if tab[l,c] == 1 :
+                        return True
+            else :
+                for c in range (j-N,j+N+1) :
+                    if tab[l,c] == 1 :
+                        return True
+
+    elif i+N+1 > n :
+        for l in range (i-N,n) :
+            
+            if j-N < 0 :
+                for c in range (0,j+N+1) :
+                        if tab[l,c] == 1 :
+                            return True
+            elif j+N+1 > p :
+                for c in range (j-N,p) :
+                        if tab[l,c] == 1 :
+                            return True
+            else :
+                for c in range (j-N,j+N+1) :
+                    if tab[l,c] == 1 :
+                        return True
+    
+    elif j-N < 0 :
+        for c in range (0,j+N+1) :
+            if i-N < 0 :
+                for l in range (0,i+N+1) :
+                    if tab[l,c] == 1 :
+                        return True
+            elif i+N+1 > n :
+                for l in range (i-N,p) :
+                    if tab[l,c] == 1 :
+                        return True
+            else :
+                for l in range (i-N,i+N+1) :
+                    if tab[l,c] == 1 :
+                        return True
+                        
+    elif j+N+1 > p :
+        for c in range (j-N,p) :
+            
+            if i-N < 0 :
+                for l in range (0,i+N+1) :
+                    if tab[l,c] == 1 :
+                        return True
+            elif i+N+1 > n :
+                for l in range (i-N,n) :
+                    if tab[l,c] == 1 :
+                        return True    
+            else :
+                for l in range (i-N,i+N+1) :
+                    if tab[l,c] == 1 :
+                        return True         
+                        
+    else :
+        for l in range (i-N,i+N+1) :
+            for c in range (j-N,j+N+1) :
+                if tab[l,c] == 1 :
+                    return True
+                    
+    return False
 
 
 
@@ -112,6 +200,8 @@ def prob(k,p) :
 
 
 
+
+    
 
 
 
