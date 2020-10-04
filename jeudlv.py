@@ -5,6 +5,8 @@ from random import random
 
 init_time = time() #temps auquel on veut que le jeu commence (en utilisant time) -> int
 
+BITE
+
 ##Modification git
 
 #modif test
